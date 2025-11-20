@@ -1,0 +1,25 @@
+🚀 Day 1 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today’s challenge was all about setting up Linux users with a non-interactive shell.
+
+Here’s how I did it:
+useradd -m -s /sbin/nologin username
+
+💡 Key Takeaways:
+✅ Learned the difference between interactive and non-interactive shells :
+non-interactive shells are used for scripts or cron jobs (no user input),
+while interactive shells are for direct user commands.
+
+✅ Understood the difference between useradd and adduser :
+useradd is ideal for scripts, automation, and minimal setups,
+while adduser is more interactive and applies default configurations.
+
+✅ The -m option:
+Creates the user's home directory automatically (e.g., /home/serviceuser)
+Without -m, no home directory is created
+
+✅ The -s option:
+Defines the user's login shell (e.g., bash, zsh, or nologin)
+Using /sbin/nologin creates a user who cannot log in interactively - perfect for system or service accounts.
+
+It may look simple, but every journey starts with a small step. 🚀
