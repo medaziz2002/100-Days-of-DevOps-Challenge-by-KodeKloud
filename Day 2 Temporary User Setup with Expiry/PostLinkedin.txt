@@ -1,0 +1,14 @@
+🚀 Day 2 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge was all about setting up a temporary user with an expiry date.
+
+Here’s how I did it:
+
+$ useradd -e 2025-11-22 yousuf
+
+
+💡 Key Takeaways:
+
+✅ The -e option is used to set an expiration date (e.g., 2025-11-22).
+
+Small task, big learning! 🚀
