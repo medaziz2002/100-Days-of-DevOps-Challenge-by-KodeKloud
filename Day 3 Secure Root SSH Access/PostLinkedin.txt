@@ -1,0 +1,16 @@
+🚀 Day 3 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge focused on Securing Root SSH Access.
+
+Here’s what I did:
+🔹 Logged into the server using a non-root user: $ ssh user@ip_address and entered the password.
+🔹 Edited the SSH configuration file /etc/ssh/sshd_config to disable direct root login by setting PermitRootLogin no.
+🔹 Reloaded the SSH service to apply the changes.
+
+💡 Key Takeaways:
+
+✅ Disabling root login over SSH is a basic but essential security step. Even if someone guesses the root password, they cannot log in directly.
+✅ It forces attackers to compromise a normal user account first and then try to escalate privileges — adding an extra layer of protection.
+✅ An alternative is PermitRootLogin prohibit-password, which allows root access only via SSH keys, not passwords — ideal for automated scripts while keeping the system secure.
+
+🔒 A small step, but it makes a big difference in server security!
