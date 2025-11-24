@@ -1,0 +1,93 @@
+In a bid to automate backup processes, the xFusionCorp Industries sysadmin team has developed a new bash script named xfusioncorp.sh. While the script has been distributed to all necessary servers, it lacks executable permissions on App Server 3 within the Stratos Datacenter.
+Your task is to grant executable permissions to the /tmp/xfusioncorp.sh script on App Server 3. Additionally, ensure that all users have the capability to execute it.
+
+
+___________________________________________________
+When listing files using the ls -l command, the first character in the output indicates the file type. For example:
+$ ls -l bash-script.sh
+
+-rwxrwxr-x 1 bob bob 89 Mar 17 01:35 bash-script.sh
+
+In the output above, the initial dash (-) signifies that "bash-script.sh" is a regular file. Other file type identifiers include:
+-: File
+d: directory
+c: character device
+b: block device
+l: symbolic link
+s: socket
+p: named pipe
+
+The characters following the file type (e.g., rwx) represent permissions grouped into three categories:
+
+Owner (u) permissions – the first three characters after the file type.
+Group (g) permissions – the next three characters.
+Others (o) permissions – the final three characters.
+
+For each permission set:
+
+r (read) permits reading the file (octal value: 4).
+w (write) allows modifying the file (octal value: 2).
+x (execute) grants the ability to run the file as a program (octal value: 1).
+
+
+
+
+-r--rwxrwx  1 bob staff 100 Mar 17  file.txt
+Owner (bob) : r-- → lecture seulement
+Group (staff) : rwx → lecture, écriture, exécution
+Others : rwx
+
+Que se passe-t-il ?
+Bob (propriétaire) veut écrire → ❌ refusé
+Pourquoi ? Parce que Linux regarde d’abord le propriétaire et bob n’a pas w.
+Peu importe que le groupe ou les autres aient w, ça n’est pas pris en compte pour le propriétaire.
+Alice (dans staff, pas propriétaire) veut écrire → ✅ autorisé
+Linux regarde les permissions du groupe → rwx → elle peut écrire.
+Charlie (ni propriétaire, ni groupe) veut écrire → ✅ autorisé
+Linux regarde les permissions des autres → rwx → autorisé.
+
+
+
+
+Numeric Mode
+In numeric mode, you provide a three-digit octal number:
+
+The first digit sets permissions for the owner.
+The second digit sets permissions for the group.
+The third digit sets permissions for others.
+Examples include:
+
+chmod 777 test-file grants read, write, and execute for everyone.
+chmod 555 test-file grants read and execute permissions for everyone.
+chmod 660 test-file grants read and write permissions to the owner and group, but no permissions for others.
+
+
+
+
+Symbolic Mode
+In symbolic mode, you specify the target (user, group, or others) using u (user), g (group), or o (others). You then adjust permissions by using the + operator to add or the - operator to remove permissions. Here are some examples:
+
+chmod u+rwX test-file
+chmod ugo+r test-file
+chmod o-rwx test-file
+These options can be combined. For example, to grant full permissions to the owner, add read and execute permissions to the group, and remove all permissions for others:
+
+chmod u+rwx,g+r-x,o-rwx test-file
+
+
+
+chmod [qui][opérateur][permissions] fichier
+
+
+example
+chmod u+rwx,g+r-x,o-rwx test-file
+u+rwx → le propriétaire peut tout faire (lecture, écriture, exécution)
+g+r-x → le groupe peut lire, mais pas exécuter (-x)
+o-rwx → les autres n’ont aucun droit
+
+
+
+work
+ls -l /tmp/xfusioncorp.sh
+sudo chmod a+rx /tmp/xfusioncorp.s
+

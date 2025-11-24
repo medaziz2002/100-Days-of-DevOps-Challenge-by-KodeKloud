@@ -1,0 +1,23 @@
+🚀 Day 4 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+Today's challenge was all about Script Execution Permissions
+Here's how I did it:
+🔹 Used chmod a+rx /tmp/xfusioncorp.sh (with sudo privileges)
+🔹 Alternatively, using symbolic format:
+
+chmod u+rwx → adds read, write, and execute for the owner
+chmod g+rx and chmod o+rx → give read and execute permissions to group and others
+
+💡 Key Takeaways:
+✅ To make a file executable, the user or group must also have read permission — otherwise, it won't run.
+✅ There are two ways to set permissions:
+
+Numerical (e.g., 755 = rwxr-xr-x)
+Symbolic (e.g., u+rwx, g+rx, o+rx)
+
+📊 Quick reminder:
+
+r (read) = 4
+w (write) = 2
+x (execute) = 1
+
+Small steps, but steady progress! Each day brings new understanding of Linux fundamentals. 💪
