@@ -1,0 +1,14 @@
+🚀 Day 8 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today’s challenge was all about Installing Ansible
+
+Here’s how I did it:
+ 🔹 sudo pip3 install Ansible==4.7.0
+
+💡 Key Takeaways:
+✅ Ansible is an open-source automation tool that simplifies IT operations and works across multiple environments.
+ ✅ Using sudo makes Ansible globally available on the system, not just for the current user.
+ ✅ We use pip3 instead of yum because Ansible packages are no longer included in CentOS’s default yum repositories.
+
+Making steady progress every day — even light tasks count!
+Wishing everyone a productive and amazing weekend! 💪✨
