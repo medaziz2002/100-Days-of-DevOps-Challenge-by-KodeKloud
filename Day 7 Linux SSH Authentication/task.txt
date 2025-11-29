@@ -1,0 +1,24 @@
+Task:
+The system admins team of xFusionCorp Industries has set up some scripts on jump host that run on regular intervals and perform operations on all app servers in Stratos Datacenter. To make these scripts work properly we need to make sure the thor user on jump host has password-less SSH access to all app servers through their respective sudo users (i.e tony for app server 1). Based on the requirements, perform the following:
+Set up a password-less authentication from user thor on jump host to all app servers through their respective sudo users.
+
+it’s about allowing thor to connect as tony, steve, banner without password.
+
+
+Here’s how I did it:
+🔹 Created a key pair on the local server (the one that needs password-less access) : ssh-keygen -t rsa
+Two files were created in ~/.ssh/:
+id_rsa → private key 🔒
+id_rsa.pub → public key 🔓
+🔹 Copied the public key to the remote server (the one we need to access):
+ssh-copy-id user@server-ipaddr
+This automatically adds the key to the authorized_keys file and sets the correct permissions.
+🔹 Tested password-less connection By running : ssh user@server-ipaddr
+
+
+
+
+
+
+
+

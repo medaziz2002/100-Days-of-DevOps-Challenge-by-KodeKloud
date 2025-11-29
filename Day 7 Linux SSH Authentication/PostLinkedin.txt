@@ -1,0 +1,21 @@
+🚀 Day 7 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today’s challenge was all about Linux SSH Authentication 🔐
+
+Here’s how I did it:
+🔹 Created a key pair on the local server (the one that needs password-less access) : ssh-keygen -t rsa
+Two files were created in ~/.ssh/:
+id_rsa → private key 🔒
+id_rsa.pub → public key 🔓
+🔹 Copied the public key to the remote server (the one we need to access):
+ssh-copy-id user@server-ipaddr
+This automatically adds the key to the authorized_keys file and sets the correct permissions.
+🔹 Tested password-less connection By running : ssh user@server-ipaddr
+
+💡 Key Takeaways:
+✅ Using -t with ssh-keygen lets you choose the encryption algorithm for the key.
+✅ The -b flag specifies the key length (e.g., 2048-bit default or 4096-bit).
+✅ ssh-copy-id is a dedicated command to transfer the public key to a remote server; it automatically adds it to the authorized_keys file.
+✅ While you could do this manually, using ssh-copy-id reduces errors by handling placement and permissions for you.
+
+Feeling great about today’s progress — each step is building a stronger foundation in DevOps! 💪
