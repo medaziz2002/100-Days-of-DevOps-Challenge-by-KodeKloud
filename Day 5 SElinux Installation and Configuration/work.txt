@@ -1,0 +1,44 @@
+Task:
+
+Following a security audit, the xFusionCorp Industries security team has opted to enhance application and server security with SELinux. To initiate testing, the following requirements have been established for App server 3 in the Stratos Datacenter:
+Install the required SELinux packages.
+Permanently disable SELinux for the time being; it will be re-enabled after necessary configuration changes.
+No need to reboot the server, as a scheduled maintenance reboot is already planned for tonight.
+Disregard the current status of SELinux via the command line; the final status after the reboot should be disabled.
+
+
+src:https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/selinux_users_and_administrators_guide/chap-security-enhanced_linux-working_with_selinux
+
+
+
+What is SELinux?
+Security-Enhanced Linux (SELinux) is a security architecture for Linux® systems that allows administrators to have more control over who can access the system.
+
+
+1️⃣ The command that didn’t work
+sudo yum install selinux-policy-devel selinux-policy-doc selinux-policy-mls \
+setroubleshoot-server setools-console mcstrans policycoreutils-python \
+policycoreutils-gui
+
+❌ Why it didn’t work
+
+policycoreutils-python does not exist on your system (EL9 / RHEL 9 / Rocky 9 / AlmaLinux 9).
+
+This package only existed on CentOS/RHEL 7.
+
+On newer versions, the SELinux Python tools were moved to a new package:
+
+Old OS	| Old package	|New OS	|New package
+RHEL/CentOS 7|	policycoreutils-python|	RHEL/CentOS/Alma/Rocky 8+|	policycoreutils-python-utils
+
+So yum cannot find policycoreutils-python → error: No match for argument: policycoreutils-python
+
+2️⃣ The command that worked
+
+sudo yum install selinux-policy-devel selinux-policy-doc selinux-policy-mls \
+setroubleshoot-server setools-console mcstrans policycoreutils-python-utils \
+policycoreutils-gui
+
+
+sudo nano /etc/sysconfig/selinux
+

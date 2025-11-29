@@ -1,0 +1,20 @@
+🚀 Day 5 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today’s challenge focused on SELinux Installation and Configuration. 
+
+Here’s how I tackled it:
+🔹 Installed the necessary packages:
+sudo yum install selinux-policy-devel selinux-policy-doc selinux-policy-mls 
+setroubleshoot-server setools-console mcstrans policycoreutils-python-utils 
+policycoreutils-gui -y
+🔹 Edited the configuration file /etc/sysconfig/selinux and set it to disabled (SELINUX=disabled)
+ 🔹 Verified SELinux status using sestatus and getenforce
+
+💡 Key Takeaways:
+✅ SELinux (Security-Enhanced Linux) is a robust security mechanism in the Linux kernel that enforces fine-grained access control policies.
+ ✅ SELinux has three modes (/etc/selinux/config):
+ 🔺 Enforcing – actively enforces policies and blocks unauthorized access.
+ 🔺 Permissive – logs violations without enforcing them (ideal for testing).
+ 🔺 Disabled – turns SELinux off completely.
+
+From theory to practice, mastering Linux security step by step! 🛠️
