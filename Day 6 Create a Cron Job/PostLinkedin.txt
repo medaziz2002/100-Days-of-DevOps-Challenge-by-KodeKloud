@@ -1,0 +1,25 @@
+🚀 Day 6 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today’s challenge was all about Creating a Cron Job
+
+Here’s how I did it:
+ 🔹 Installed the cron with: sudo yum install cronie 
+ 🔹 Used crontab -e to add a cron job for the current user.
+ 🔹 Added the cron job : */5 * * * * /path/to/script.sh : This runs the script every 5 minutes.
+
+💡 Key Takeaways:
+
+✅ Common crontab options:
+ 🔺 -l → list all cron jobs
+ 🔺 -e → edit cron jobs
+ 🔺 -r → remove all cron jobs
+ 🔺 -u <user> → manage cron jobs for another user (requires sudo)
+✅ Crontab format: min(0-59) hour(0-23) day_of_month(1-31) month(1-12) day_of_week(0-7) command
+✅ Some more examples:
+ 🔺 0 * * * * → every hour
+ 🔺 * * * * * → every minute
+ 🔺 0 9-17 * * 1-5 → every hour from 9AM–5PM, Monday–Friday
+ 🔺 @reboot → run once after reboot
+
+Enjoy your day, everyone!
+🦬 cette poste de mon ami changer un peux pour moi 
