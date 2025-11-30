@@ -1,0 +1,31 @@
+Task:
+
+There is a critical issue going on with the Nautilus application in Stratos DC. The production support team identified that the application is unable to connect to the database. After digging into the issue, the team found that mariadb service is down on the database server.
+digging (verb / gerund) → Investigating or examining deeply → التحقيق / البحث
+Look into the issue and fix the same.
+
+
+Here’s how I did it:
+
+sudo ls -lah /var/lib/mysql
+ls: cannot access '/var/lib/mysql': No such file or directory
+
+sudo mkdir /var/lib/mysql
+
+sudo ls -lah /var/lib/mysql
+total 12K
+drwxr-xr-x 2 root root 4.0K Sep  2 08:53 .
+drwxr-xr-x 1 root root 4.0K Sep  2 08:53 ..
+
+sudo chown -R mysql:mysql /var/lib/mysql
+
+sudo ls -lah /var/lib/mysql
+drwxr-xr-x 2 mysql mysql 4.0K Sep  2 08:53 .
+drwxr-xr-x 1 root  root  4.0K Sep  2 08:53 ..
+
+sudo systemctl restart mariadb
+sudo systemctl status mariadb
+● mariadb.service - MariaDB 10.5 database server
+     Loaded: loaded (/usr/lib/systemd/system/mariadb.service; enabled; preset: disabled)
+     Active: active (running) since Tue 2025-09-02 08:56:50 UTC; 43s ago
+
