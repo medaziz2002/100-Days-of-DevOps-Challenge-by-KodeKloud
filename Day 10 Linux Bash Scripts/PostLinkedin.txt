@@ -1,0 +1,25 @@
+🚀 Day 10 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today’s challenge was all about automating website backups with Bash 💻🗂️
+
+🔍 What happened?
+ I needed to create a backup script for a static website running on App Server 1, ensuring:
+The /var/www/html/beta directory is zipped into xfusioncorp_beta.zip
+Backup is stored locally in /backup and transferred to Nautilus Backup Server
+Script runs without asking for a password
+No use of sudo inside the script
+
+🔧 Here’s how I did it:
+ 🔹 Created the backup script /scripts/beta_backup.sh with variables for source, local backup, remote server, and remote path.
+ 🔹 Used zip -r to archive the website files.
+ 🔹 Used scp to transfer the archive to the backup server.
+ 🔹 Set up passwordless SSH with ssh-keygen and ssh-copy-id so the script runs automatically without prompting for a password.
+ 🔹 Made the script executable: chmod +x /scripts/beta_backup.sh
+ 🔹 Ran the script and verified that the backup was successfully created locally and on the remote server 🎉
+
+💡 Key Takeaways
+ ✅ Bash scripting can automate critical tasks like backups and reduce human error
+ ✅ Passwordless SSH is a must for automated remote transfers
+ ✅ Always test your backup script locally before relying on it for production
+
+🦬 That’s my Day 10 — one well-written script can save hours of manual backup work!
