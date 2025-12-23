@@ -1,0 +1,343 @@
+The `Nautilus` application development team recently finished the beta version of one of their Java-based applications, which they are planning to deploy on one of the app servers in `Stratos DC`. After an internal team meeting, they have decided to use the `tomcat` application server. Based on the requirements mentioned below complete the task:
+
+a. Install `tomcat` server on `App Server 2`.
+b. Configure it to run on port `5001`. 
+c. There is a `ROOT.war` file on `Jump host` at location `/tmp`.
+Deploy it on this tomcat server and make sure the webpage works directly on base URL i.e `curl http://stapp02:5001 i can't untersstand the question c `
+
+
+📚 Helpful Resource:
+This guide was super helpful: https://ravinderfzk.medium.com/install-tomcat-on-linux-2ba5d8cb51ac
+
+
+
+
+# Installing and Configuring Tomcat Server - Complete Guide
+
+---
+
+## **Step 1 — Install Java 17**
+
+Tomcat 11 requires Java 17 or higher.
+
+```bash
+# Install Java 17
+dnf install java-17-openjdk java-17-openjdk-devel
+
+# Verify Java installation
+java -version
+```
+
+---
+
+## **Step 2 — Create Tomcat User and Group**
+
+For security reasons, we should not run Tomcat under the root user. Let's create a dedicated group and user for Tomcat.
+
+```bash
+# Create tomcat group
+sudo groupadd tomcat
+
+# Create tomcat user
+# -s /bin/false = no shell login (security)
+# -g tomcat = add to tomcat group
+# -d /opt/tomcat = home directory
+sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+```
+
+---
+
+## **Step 3 — Download and Install Tomcat 11**
+
+Download Tomcat 11 from the official Apache archives and install it to `/opt/tomcat`.
+
+```bash
+# Navigate to /opt directory
+cd /opt
+
+# Download Tomcat 11.0.15
+wget https://archive.apache.org/dist/tomcat/tomcat-11/v11.0.15/bin/apache-tomcat-11.0.15.tar.gz
+
+# Extract the archive
+sudo tar -xvzf apache-tomcat-11.0.15.tar.gz
+
+# Move to /opt/tomcat
+sudo mv apache-tomcat-11.0.15 /opt/tomcat
+```
+
+---
+
+## **Step 4 — Set Permissions and Ownership**
+
+Set the correct ownership and permissions for the Tomcat directory.
+
+```bash
+# Change ownership to tomcat user and group
+sudo chown -R tomcat:tomcat /opt/tomcat
+
+# Give execute permission to bin directory
+chmod o+x /opt/tomcat/bin/
+```
+
+---
+
+## **Step 5 — Create SystemD Service File**
+
+Create a systemd service file to manage Tomcat as a system service.
+
+```bash
+# Create the service file
+sudo nano /etc/systemd/system/tomcat.service
+```
+
+Add the following content:
+
+```ini
+[Unit]
+Description=Apache Tomcat 11 Server
+After=network.target
+
+[Service]
+Type=forking
+User=tomcat
+Group=tomcat
+
+Environment="JAVA_HOME=/usr/lib/jvm/java-17-openjdk"
+Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
+Environment="CATALINA_BASE=/opt/tomcat"
+Environment="CATALINA_HOME=/opt/tomcat"
+Environment="CATALINA_PID=/opt/tomcat/temp/tomcat.pid"
+Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Save and exit (Ctrl+X, then Y, then Enter).
+
+**Reload systemd daemon:**
+
+```bash
+sudo systemctl daemon-reload
+
+# Enable Tomcat to start on boot
+sudo systemctl enable tomcat
+
+# Start Tomcat service
+sudo systemctl start tomcat
+
+# Check status
+sudo systemctl status tomcat
+```
+
+---
+
+## **Step 6 — Configure Tomcat Port**
+
+Change Tomcat's default port from 8080 to your desired port (e.g., 5001).
+
+```bash
+# Edit server.xml
+sudo nano /opt/tomcat/conf/server.xml
+```
+
+Find the line with `Connector port="8080"` and change it:
+
+**Change from:**
+```xml
+<Connector port="8080" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443" />
+```
+
+**Change to:**
+```xml
+<Connector port="5001" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443" />
+```
+
+Save and restart Tomcat:
+
+```bash
+sudo systemctl restart tomcat
+```
+
+---
+
+## **Step 7 — Deploy Application (ROOT.war)**
+
+### **7a. Copy WAR file from Jump Host to App Server**
+
+**On Jump Host:**
+
+```bash
+# Verify the file exists
+ls -la /tmp/ROOT.war
+
+# Copy to App Server 2 (replace steve@stapp02 with your server details)
+scp /tmp/ROOT.war steve@stapp02:/tmp/
+```
+
+**Explanation:**
+- `/tmp/ROOT.war` = source file
+- `steve@stapp02:/tmp/` = destination (user@server:path)
+
+### **7b. SSH to App Server**
+
+```bash
+# Connect to App Server 2
+ssh steve@stapp02
+
+# Switch to root
+sudo su -
+```
+
+### **7c. Navigate to Tomcat webapps directory**
+
+```bash
+cd /opt/tomcat/webapps/
+```
+
+### **7d. Remove default ROOT application**
+
+```bash
+rm -rf ROOT ROOT.war
+```
+
+**Why remove?**
+- Removes the default Tomcat welcome page
+- Makes space for your application
+- Prevents conflicts between old and new ROOT apps
+
+### **7e. Copy ROOT.war to webapps**
+
+```bash
+cp /tmp/ROOT.war .
+```
+
+**Explanation:**
+- `cp` = copy
+- `/tmp/ROOT.war` = source (file to copy)
+- `.` = destination (current directory = webapps/)
+
+### **7f. Set ownership to tomcat user**
+
+```bash
+chown tomcat:tomcat ROOT.war
+```
+
+**Why?**
+- Tomcat service runs as `tomcat` user (not root)
+- The `tomcat` user needs permission to read and extract ROOT.war
+
+### **7g. Restart Tomcat to deploy**
+
+```bash
+systemctl restart tomcat
+```
+
+**What happens:**
+- Tomcat automatically detects ROOT.war
+- Extracts it to ROOT/ directory
+- Deploys the application
+
+### **7h. Wait for deployment**
+
+```bash
+sleep 15
+```
+
+### **7i. Verify deployment**
+
+```bash
+# Check if ROOT directory was created
+ls -la
+
+# Test the application
+curl http://stapp02:5001
+```
+
+---
+
+## **Verification Commands**
+
+```bash
+# Check Tomcat status
+systemctl status tomcat
+
+# Check port is listening
+ss -tlnp | grep 5001
+
+# View Tomcat logs
+tail -f /opt/tomcat/logs/catalina.out
+```
+
+---
+
+## **Summary**
+
+✅ Installed Java 17  
+✅ Created dedicated tomcat user and group  
+✅ Downloaded and installed Tomcat 11  
+✅ Set correct permissions and ownership  
+✅ Created systemd service for Tomcat  
+✅ Changed Tomcat port to 5001  
+✅ Deployed ROOT.war application  
+✅ Application accessible at `http://stapp02:5001`
+
+---
+
+## **Quick Reference - All Commands in Order**
+
+```bash
+# Step 1: Install Java
+dnf install java-17-openjdk java-17-openjdk-devel
+java -version
+
+# Step 2: Create user and group
+sudo groupadd tomcat
+sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+
+# Step 3: Download and install Tomcat
+cd /opt
+wget https://archive.apache.org/dist/tomcat/tomcat-11/v11.0.15/bin/apache-tomcat-11.0.15.tar.gz
+sudo tar -xvzf apache-tomcat-11.0.15.tar.gz
+sudo mv apache-tomcat-11.0.15 /opt/tomcat
+
+# Step 4: Set permissions
+sudo chown -R tomcat:tomcat /opt/tomcat
+chmod o+x /opt/tomcat/bin/
+
+# Step 5: Create systemd service (copy content from above)
+sudo nano /etc/systemd/system/tomcat.service
+sudo systemctl daemon-reload
+sudo systemctl enable tomcat
+sudo systemctl start tomcat
+
+# Step 6: Change port (edit server.xml and change 8080 to 5001)
+sudo nano /opt/tomcat/conf/server.xml
+sudo systemctl restart tomcat
+
+# Step 7: Deploy application
+# On Jump Host:
+scp /tmp/ROOT.war steve@stapp02:/tmp/
+
+# On App Server:
+ssh steve@stapp02
+sudo su -
+cd /opt/tomcat/webapps/
+rm -rf ROOT ROOT.war
+cp /tmp/ROOT.war .
+chown tomcat:tomcat ROOT.war
+systemctl restart tomcat
+sleep 15
+curl http://stapp02:5001
+```

@@ -1,0 +1,15 @@
+🚀 Day 11 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today's challenge was all about Installing and Configuring Tomcat Server
+
+Here's what I did:
+🔹 Installed Tomcat on the app server
+🔹 Updated server.xml to serve the app on port 5001
+🔹 Copied the .war file from Jump Host using scp, then deployed it to Tomcat's webapps directory for deployment
+
+💡 Key Takeaways:
+✅ A Connector represents an endpoint through which requests are received and responses are returned.
+ ✅ We can have multiple connectors, but to change the port, we need to modify the one using the HTTP protocol.
+ ✅ Deployment can also be done using Tomcat Manager or Maven.
+
+Have a wonderful evening and good night! 🌙
