@@ -1,0 +1,141 @@
+Our monitoring tool has reported an issue in Stratos Datacenter. One of our app servers has an issue, as its Apache service is not reachable on port 5001 (which is the Apache port). 
+The service itself could be down, the firewall could be at fault, or something else could be causing the issue. 
+Use tools like telnet, netstat, etc. to find and fix the issue. 
+Also make sure Apache is reachable from the jump host without compromising any security settings. 
+Once fixed, you can test the same using command curl http://stapp01:8087 command from jump host.
+
+
+
+
+
+
+Client (curl / browser)
+         |
+         v
++---------------------+
+| stapp01 (server)    |
+|  - Linux OS         |
+|  - Apache           | <- web server software
+|     - listening on port 8087
+|  - Web Application  |
++---------------------+
+
+"Apache is a web server software"
+
+APACHE SERVICE TROUBLESHOOTING REPORT - STAPP01
+================================================
+
+PROBLEM SUMMARY
+---------------
+Apache service on stapp01 server was not reachable on port 5001 from the jump host, 
+even though the service was configured to listen on that port.
+
+
+PROBLEMS IDENTIFIED
+-------------------
+
+1. PORT CONFLICT
+   - Issue: Apache couldn't bind to port 5001 because sendmail process (PID 497) 
+     was already listening on 127.0.0.1:5001
+   
+   - Evidence:
+     netstat -lntp | grep 5001
+     tcp        0      0 127.0.0.1:5001          0.0.0.0:*               LISTEN      497/sendmail
+
+
+2. FIREWALL BLOCKING
+   - Issue: iptables firewall had a default REJECT rule blocking incoming connections 
+     to port 5001
+   
+   - Evidence:
+     Only SSH (port 22) was explicitly allowed in the INPUT chain
+     A REJECT rule at the end was blocking all other incoming connections
+
+
+SOLUTION STEPS
+--------------
+
+STEP 1: Kill the Conflicting Process
+-------------------------------------
+Command:
+sudo -i
+kill 497
+
+Explanation:
+- sudo -i: Switch to root user with full root environment
+- kill 497: Terminate the sendmail process (PID 497) occupying port 5001
+- This freed up the port so Apache could bind to it
+
+
+STEP 2: Restart Apache Service
+-------------------------------
+Command:
+systemctl restart httpd
+
+Explanation:
+- Restarts the Apache HTTP daemon service
+- After restart, Apache successfully bound to port 5001
+- Status confirmed: Active (running) and listening on port 5001
+
+
+STEP 3: Configure Firewall to Allow Port 5001
+----------------------------------------------
+Command:
+sudo iptables -I INPUT 1 -p tcp --dport 5001 -j ACCEPT
+
+Detailed Command Breakdown:
+- sudo: Execute with superuser privileges
+- iptables: Linux firewall management tool
+- -I INPUT 1: INSERT rule at position 1 in the INPUT chain (first rule evaluated)
+- -p tcp: Match TCP protocol packets
+- --dport 5001: Match packets destined for destination port 5001
+- -j ACCEPT: JUMP to ACCEPT target (allow the packets through)
+
+Why This Works:
+By inserting the ACCEPT rule at position 1, it's evaluated BEFORE the blanket 
+REJECT rule, allowing traffic on port 5001 while maintaining other security settings.
+
+
+VERIFICATION COMMANDS
+---------------------
+# Check what's listening on port 5001
+netstat -lntp | grep 5001
+
+# Check Apache service status
+systemctl status httpd
+
+# View current firewall rules
+iptables -L -n
+
+# Test connectivity from jump host
+telnet stapp01 5001
+curl http://stapp01:5001
+
+
+COMPLETE COMMAND SEQUENCE USED
+-------------------------------
+1. sudo -i
+2. netstat -lntp | grep 5001
+3. kill 497
+4. systemctl restart httpd
+5. systemctl status httpd
+6. iptables -L -n
+7. sudo iptables -I INPUT 1 -p tcp --dport 5001 -j ACCEPT
+
+
+FINAL RESULT
+------------
+Apache service is now:
+- Running successfully on port 5001
+- Accessible from the jump host
+- Protected by firewall with explicit allow rule for port 5001
+- No security settings were compromised
+
+
+KEY LEARNINGS
+-------------
+1. Always check for port conflicts using netstat before troubleshooting services
+2. Firewall rules are evaluated in order - insert ACCEPT rules before REJECT rules
+3. Use "iptables -I" to insert rules at specific positions
+4. Verify service status after making changes
+5. Test connectivity from remote hosts to confirm accessibility

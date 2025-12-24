@@ -1,0 +1,30 @@
+🚀 Day 12 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today's Challenge was all about Troubleshooting a Linux Network Service (Apache) issue on the stapp01 server.
+
+Here's how I did it:
+
+🔹 Logged in to the stapp01 server
+🔹 Tried to start the Apache service, got an error: "Address already in use"
+🔹 Checked which process was using the assigned port 5001 using: "netstat -lntp | grep 5001"
+🔹 Found sendmail process (PID 497) occupying port 5001
+🔹 Killed the conflicting process: "kill 497"
+🔹 Restarted the httpd service using: "systemctl restart httpd"
+🔹 Service worked locally but wasn't reachable from the jump host
+🔹 Inspected firewall rules using: "sudo iptables -L -n"
+🔹 Noticed that only port 22 (SSH) was allowed, all other traffic was blocked by a REJECT rule
+🔹 Allowed inbound traffic on port 5001 by inserting rule at position 1: "sudo iptables -I INPUT 1 -p tcp --dport 5001 -j ACCEPT"
+🔹 Verified from jump host using: "telnet stapp01 5001" and "curl http://stapp01:5001"
+
+💡 Key Takeaways:
+
+✅ telnet is a network protocol used to connect systems via CLI over a TCP/IP network
+✅ netstat displays detailed info about network connections, routing tables, interface stats, and more 
+   (l → Listening sockets, n → Numerical addresses, t → TCP, p → Process ID and name)
+✅ iptables is a powerful Linux utility for configuring firewall rules, controlling incoming, outgoing, 
+   and forwarded traffic at the kernel level
+✅ Using "iptables -I INPUT 1" inserts the rule at position 1, ensuring it's evaluated before REJECT rules
+✅ Always check for port conflicts before troubleshooting service startup issues
+
+Keep learning and growing! 💪🔥
+
