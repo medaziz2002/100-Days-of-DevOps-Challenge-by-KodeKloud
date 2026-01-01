@@ -1,0 +1,46 @@
+🚀 **Day 13 of #100DaysOfDevOps with #KodeKloud** 🚀
+
+Today’s challenge was all about **iptables installation and configuration** — allowing incoming traffic on **port 3001** from only **one specific server**.
+
+Here’s what I did:
+🔹 Installed the iptables service:
+
+```bash
+sudo yum install iptables-services
+```
+
+🔹 Blocked all incoming traffic on port 3001:
+
+```bash
+iptables -I INPUT -p tcp --dport 3001 -j DROP
+```
+
+🔹 Allowed traffic from a specific server:
+
+```bash
+iptables -I INPUT -p tcp --src <server_ip> --dport 3001 -j ACCEPT
+```
+
+🔹 Saved the rules:
+
+```bash
+sudo service iptables save
+```
+
+🔹 Restarted iptables to apply changes:
+
+```bash
+sudo systemctl restart iptables
+```
+
+💡 **Key Takeaways:**
+✅ **Rule order matters** — the `-I` (insert) option adds rules at the top. If you block all traffic before allowing a specific IP, the block takes precedence.
+
+✅ **Core components of iptables:**
+
+* **Tables:** Groups of rules (filter, nat, mangle)
+* **Chains:** Paths packets traverse (INPUT, OUTPUT, FORWARD)
+* **Rules:** Conditions and actions for packets
+* **Targets:** What happens when a rule matches (ACCEPT, DROP, REJECT)
+
+Feeling more confident in **network security and firewall rules**! 💪
