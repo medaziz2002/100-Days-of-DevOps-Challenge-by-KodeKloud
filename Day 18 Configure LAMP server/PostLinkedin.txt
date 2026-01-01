@@ -1,0 +1,47 @@
+🚀 Day 18 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge was all about configuring a LAMP server. The lab handled most of the setup, so I focused mainly on the database part.
+
+Here’s what I did:
+
+🔹 Installed MariaDB
+🔹 Accessed it as the root user
+🔹 Created a new database:
+
+```sql
+CREATE DATABASE kodekloud_db3;
+```
+
+🔹 Created a new user (example with placeholders to understand the syntax):
+
+```sql
+-- Step 1: Create a new user
+CREATE USER 'username_here'@'host_here' IDENTIFIED BY 'password_here';
+
+-- Example:
+CREATE USER 'myuser'@'%' IDENTIFIED BY 'MySecretPass123';
+```
+
+🔹 Granted full access to the user on the database:
+
+```sql
+-- Step 2: Grant privileges
+GRANT ALL PRIVILEGES ON database_name.* TO 'username_here'@'host_here';
+
+-- Example:
+GRANT ALL PRIVILEGES ON kodekloud_db3.* TO 'myuser'@'%';
+```
+
+💡 Key Takeaways:
+✅ Common MariaDB commands:
+🔸 Show all databases: `SHOW DATABASES;`
+🔸 List users: `SELECT User FROM mysql.user;`
+🔸 Delete a user: `DROP USER 'myuser'@'%';`
+🔸 View user privileges: `SHOW GRANTS FOR 'myuser'@'%';`
+
+✅ In MariaDB, `%` is a wildcard for hostnames, meaning the user can connect from **any host**.
+✅ Just like in PostgreSQL, (`"`) and (`'`) are different, and every command must end with a semicolon `;`!
+
+Yesterday we explored PostgreSQL, and today we took our first steps with MariaDB. We barely scratched the surface, but understanding the basics is essential.
+
+Keep learning and keep coding! 💻✨

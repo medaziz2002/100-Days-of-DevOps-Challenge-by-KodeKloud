@@ -1,0 +1,134 @@
+xFusionCorp Industries is planning to host a WordPress website on their infra in Stratos Datacenter. 
+They have already done infrastructure configuration—for example, on the storage server they already have a shared directory /vaw/www/html that is mounted on each app host under /var/www/html directory. Please perform the following steps to accomplish the task:
+
+a. Install httpd, php and its dependencies on all app hosts.
+b. Apache should serve on port 8088 within the apps.
+c. Install/Configure MariaDB server on DB Server.
+d. Create a database named kodekloud_db5 and create a database user named kodekloud_pop identified as password Rc5C9EyvbU. Further make sure this newly created user is able to perform all operation on the database you created.
+e. Finally you should be able to access the website on LBR link, by clicking on the App button on the top bar. You should see a message like App is able to connect to the database using user kodekloud_pop
+
+
+
+
+
+# WordPress Infrastructure Setup - Copy Paste Commands
+
+## PART 1: DATABASE SERVER (stdb01)
+
+### Step 1: Install MariaDB
+```bash
+ssh peter@stdb01
+sudo -i
+dnf install -y mariadb-server mariadb
+systemctl enable mariadb
+systemctl start mariadb
+systemctl status mariadb
+```
+
+### Step 2: Create Database and User
+```bash
+mysql
+```
+
+Inside MySQL, run these commands:
+```sql
+CREATE DATABASE kodekloud_db5;
+SHOW DATABASES;
+CREATE USER 'kodekloud_pop'@'%' IDENTIFIED BY 'Rc5C9EyvbU';
+GRANT ALL PRIVILEGES ON kodekloud_db5.* TO 'kodekloud_pop'@'%';
+FLUSH PRIVILEGES;
+SELECT user, host FROM mysql.user;
+SHOW GRANTS FOR 'kodekloud_pop'@'%';
+exit
+```
+
+---
+
+## PART 2: APP SERVER 1 (stapp01)
+
+### Step 1: Install Apache, PHP, MySQL
+```bash
+ssh tony@stapp01
+sudo -i
+dnf install -y httpd php php-mysqlnd php-fpm mysql
+```
+
+### Step 2: Configure Apache to Listen on Port 8088
+```bash
+sed -i 's/Listen 80/Listen 8088/g' /etc/httpd/conf/httpd.conf
+```
+
+### Step 3: Start and Enable Apache
+```bash
+systemctl enable httpd
+systemctl start httpd
+systemctl status httpd
+```
+
+### Step 4: Verify Installation
+```bash
+ss -tulnp | grep httpd
+php -m | grep mysqli
+mysql -h stdb01 -u kodekloud_pop -pRc5C9EyvbU -e "USE kodekloud_db5; SELECT 1;"
+```
+
+---
+
+## PART 3: APP SERVER 2 (stapp02)
+
+### Step 1: Install Apache, PHP, MySQL
+```bash
+ssh steve@stapp02
+sudo -i
+dnf install -y httpd php php-mysqlnd php-fpm mysql
+```
+
+### Step 2: Configure Apache to Listen on Port 8088
+```bash
+sed -i 's/Listen 80/Listen 8088/g' /etc/httpd/conf/httpd.conf
+```
+
+### Step 3: Start and Enable Apache
+```bash
+systemctl enable httpd
+systemctl start httpd
+systemctl status httpd
+```
+
+### Step 4: Verify Installation
+```bash
+ss -tulnp | grep httpd
+php -m | grep mysqli
+mysql -h stdb01 -u kodekloud_pop -pRc5C9EyvbU -e "USE kodekloud_db5; SELECT 1;"
+```
+
+---
+
+## PART 4: APP SERVER 3 (stapp03)
+
+### Step 1: Install Apache, PHP, MySQL
+```bash
+ssh banner@stapp03
+sudo -i
+dnf install -y httpd php php-mysqlnd php-fpm mysql
+```
+
+### Step 2: Configure Apache to Listen on Port 8088
+```bash
+sed -i 's/Listen 80/Listen 8088/g' /etc/httpd/conf/httpd.conf
+```
+
+### Step 3: Start and Enable Apache
+```bash
+systemctl enable httpd
+systemctl start httpd
+systemctl status httpd
+```
+
+### Step 4: Verify Installation
+```bash
+ss -tulnp | grep httpd
+php -m | grep mysqli
+mysql -h stdb01 -u kodekloud_pop -pRc5C9EyvbU -e "USE kodekloud_db5; SELECT 1;"
+```
+
