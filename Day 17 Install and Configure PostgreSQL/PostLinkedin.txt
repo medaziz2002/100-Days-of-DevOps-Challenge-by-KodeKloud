@@ -1,0 +1,24 @@
+🚀 Day 17 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge was all about installing and configuring PostgreSQL, a powerful open-source relational database 🐘
+
+🔹 Accessed the PostgreSQL CLI as the postgres user:
+sudo -u postgres psql
+
+🔹 Created a new user
+🔹 Created a new database
+🔹 Granted full privileges on the database to the user
+
+💡 Key Takeaways:
+✅ Useful PostgreSQL commands:
+
+\du → list all users
+
+\l → list all databases
+
+\q → quit the PostgreSQL CLI
+
+✅ Single quotes (' ') and double quotes (" ") have different meanings in PostgreSQL
+✅ Never forget the semicolon (;) — one missing character can break everything!
+
+PostgreSQL is a huge ecosystem, and this is just the beginning — but every small step counts 🚀

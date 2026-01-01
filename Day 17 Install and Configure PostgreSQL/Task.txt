@@ -1,0 +1,69 @@
+The Nautilus application development team has shared that they are planning to deploy one newly developed application on Nautilus infra in Stratos DC. The application uses PostgreSQL database, so as a pre-requisite we need to set up PostgreSQL database server as per requirements shared below:
+PostgreSQL database server is already installed on the Nautilus database server.
+a. Create a database user kodekloud_rin and set its password to YchZHRcLkL.
+b. Create a database kodekloud_db2 and grant full permissions to user kodekloud_rin on this database.
+Note: Please do not try to restart PostgreSQL server service.
+
+
+
+
+=============================================================================
+How to install and create a PostgreSQL database on CentOS 9
+=============================================================================
+
+STEP 1: Check PostgreSQL Status
+--------------------------------
+
+systemctl status postgresql
+
+
+STEP 2: Connect to the PostgreSQL shell
+----------------------------------------
+
+To manage your database, you must connect to the PostgreSQL or psql 
+command-line shell. You can do so by switching to the postgres root user, 
+which comes pre-configured during the installation:
+
+sudo su - postgres
+
+Your shell prompt should change. Now, enter the PostgreSQL shell using 
+this command:
+
+psql
+
+Once your command line changes into postgres=#, you can manage your database.
+
+To quit the PostgreSQL prompt and return to your system's main shell, 
+enter the following:
+
+\q
+
+
+STEP 3: Create Database User
+-----------------------------
+
+CREATE USER kodekloud_cap WITH PASSWORD 'TmPcZjtRQx';
+
+
+STEP 4: Create Database
+------------------------
+
+CREATE DATABASE kodekloud_db9;
+
+
+STEP 5: Grant All Privileges
+-----------------------------
+
+GRANT ALL PRIVILEGES ON DATABASE kodekloud_db9 TO kodekloud_cap;
+
+
+STEP 6: Exit PostgreSQL
+------------------------
+
+\q
+
+exit
+
+=============================================================================
+Setup Complete!
+=============================================================================
