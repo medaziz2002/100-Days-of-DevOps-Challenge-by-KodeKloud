@@ -1,0 +1,26 @@
+🚀 Day 19 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge was all about **Installing and Configuring a Web Application**.
+
+Here’s what I did:
+🔹 Installed **httpd** on the **stapp02** server
+🔹 Configured Apache to listen on **port 6300** and verified the document root is `/var/www/html`
+🔹 Copied web pages from **jump_host** to the **stapp02** server using:
+
+```
+scp -r thor@jump_host:/home/thor/blog /tmp/
+scp -r thor@jump_host:/home/thor/games /tmp/
+```
+
+🔹 Moved the files to the correct web directory:
+
+```
+mv /tmp/blog /var/www/html/blog
+mv /tmp/games /var/www/html/games
+```
+
+🔹 Restarted the **httpd** service successfully ✅
+
+💡 Key Takeaway: Daily practice and real-world tasks are the foundation of strong DevOps skills. I’m excited to discover tomorrow’s task! 🚀
+
+
