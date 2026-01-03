@@ -1,0 +1,53 @@
+🚀 Day 20 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today's challenge: Configuring NGINX + PHP-FPM Using a Unix Socket
+
+What I Built:
+🔹 Installed NGINX and PHP-FPM 8.3 on the app server
+🔹 Configured custom port (8092) and document root (/var/www/html)
+🔹 Set up PHP-FPM to use Unix socket: /var/run/php-fpm/default.sock
+🔹 Created an upstream block for cleaner socket management:
+
+upstream php-fpm {
+    server unix:/var/run/php-fpm/default.sock;
+}
+
+🔹 Configured NGINX to handle PHP requests:
+
+location ~ \.php$ {
+    try_files $uri =404;
+    fastcgi_pass php-fpm;
+    fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+}
+
+🔹 Successfully tested with curl http://stapp02:8092/index.php ✅
+
+💡 Key Takeaways:
+
+✅ Unix sockets > TCP/IP for same-machine communication — faster, more secure, zero network overhead
+
+✅ try_files $uri =404; protects PHP-FPM from processing non-existent or malicious files
+
+✅ Upstream blocks provide better abstraction and prevent 502 errors during PHP-FPM restarts
+
+✅ SCRIPT_FILENAME is critical — without it, PHP-FPM doesn't know which file to execute
+
+✅ Understanding the nginx → php-fpm → socket flow is essential for debugging web stack issues
+
+🐛 Challenges I Faced:
+
+Initially struggled with 404 errors due to incorrect document root configuration. Learned the importance of:
+- Verifying file paths and permissions
+- Checking service names (it's php-fpm, not php83-php-fpm!)
+- Testing locally before remote testing
+
+📘 Resources that helped:
+- https://github.com/kodekloudhub/community-faq/blob/main/docs/kodekloud-engineer/level-4/linux/09-nginx-php-fpm-linux-sock.md
+- https://wiki.crowncloud.net/?How_to_Install_PHP_8_2_in_CentOS_9_Stream
+- https://reintech.io/blog/setting-up-php-fpm-centos-9
+
+Another day, another lesson learned! 🎯
+
+#DevOps #Linux #NGINX #SystemAdministration #CentOS 
