@@ -1,0 +1,15 @@
+🚀 Day 22 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge was cloning a local Git repository.
+
+Here’s what I did:
+🔹 Switched to the target user: sudo -i -u natasha
+🔹 Went to the destination folder: cd /destination/path
+🔹 Cloned the repo: git clone /source/path/ecommerce.git
+🔹 Checked that the .git folder exists to confirm success ✅
+
+💡 Key Takeaways:
+✅ Cloning a local Git repo copies the repo with its full history.
+✅ Using sudo -i -u username ensures correct permissions and environment, unlike sudo git clone.
+
+Have a great day, everyone! 🌟
