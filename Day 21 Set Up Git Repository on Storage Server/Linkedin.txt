@@ -1,0 +1,20 @@
+🚀 Day 21 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today's challenge was all about Setting up a Git Repository on a Server – a fundamental skill for any DevOps engineer!
+
+Here’s how I did it:
+🔹 Installed Git on the server: sudo yum install git -y
+🔹 Created the repository directory at /opt/ecommerce.git and navigated to it
+🔹 Initialized a bare repository: git init --bare
+
+💡 Key Takeaways:
+✅ A bare repository has no working directory – you can't commit directly to it, only push to it from local repositories
+✅ Perfect for use as a central repository where multiple developers can collaborate by pushing and pulling changes
+✅ Always use --bare (double dashes) when initializing – a small detail that makes a big difference!
+
+📚 Want to dive deeper into bare repositories? Check out this helpful resource:
+https://www.geeksforgeeks.org/git/bare-repositories-in-git/
+
+On to Day 22! 💪
+
+#Git #DevOps #VersionControl #TechLearning
