@@ -1,0 +1,25 @@
+🚀 Day 24 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge was all about creating Git branches.
+
+Here’s how I did it:
+
+🔹 What I practiced today:
+
+🔹 Listed all existing branches: git branch
+
+🔹 Switched back to the main branch: git switch master
+
+🔹 Created a new working branch: git branch new_branch
+
+💡 Key Takeaways:
+
+✅ A Git branch represents an independent line of development, making it easier to work on new features or bug fixes without affecting the main branch.
+
+✅ Other useful Git commands:
+
+🔻 git checkout -b new_branch : create and switch to a new branch in one step
+
+🔻 git branch -d new_branch : delete a branch that is no longer needed
+
+On to the next task 🚀

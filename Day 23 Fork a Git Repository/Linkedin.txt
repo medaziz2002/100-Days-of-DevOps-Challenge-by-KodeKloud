@@ -1,0 +1,18 @@
+🚀 Day 23 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge was all about Forking a Git Repository
+
+Here’s what I did:
+🔹 This time, no terminal was required
+🔹 I explored the repository directly on GitHub
+🔹 With just one click on the Fork button, I created my own copy of the project
+
+💡 Key Takeaways:
+
+✅ Forking allows you to create an independent copy of a repository under your own GitHub account
+✅ It’s a great way to contribute to open-source projects or safely experiment with code
+✅ Even small tasks play a big role in building strong fundamentals
+
+📹 As mentioned in the note, I also recorded a short video to demonstrate how I completed this task, following the required web UI guidelines.
+
+👉 Wishing everyone a productive Monday! 🚀
