@@ -1,0 +1,17 @@
+🚀 Day 25 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge was all about merging Git branches 🧩
+
+Here’s how I tackled it:
+🔹 Created a new branch from master
+🔹 Added and committed a new file on that branch
+🔹 Switched back to master and merged the branch using git merge
+
+💡 Key takeaways:
+
+✅ When you run git merge <branch>, the current branch (e.g. master) receives the changes, while the other branch remains unchanged
+✅ Consistency beats speed — learning step by step really pays off 🚀
+
+More challenges coming next — stay tuned! 👀✨
+
+#Git #DevOps #LearningJourney
