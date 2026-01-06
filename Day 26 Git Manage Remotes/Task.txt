@@ -1,0 +1,40 @@
+The xFusionCorp development team added updates to the project that is maintained under /opt/demo.git repo and cloned under /usr/src/kodekloudrepos/demo. Recently some changes were made on Git server that is hosted on Storage server in Stratos DC. The DevOps team added some new Git remotes, so we need to update remote on /usr/src/kodekloudrepos/demo repository as per details mentioned below:
+
+
+a. In /usr/src/kodekloudrepos/demo repo add a new remote dev_demo and point it to /opt/xfusioncorp_demo.git repository.
+
+
+b. There is a file /tmp/index.html on same server; copy this file to the repo and add/commit to master branch.
+
+
+c. Finally push master branch to this new remote origin.
+
+
+
+
+# 1. Go to the demo repo
+cd /usr/src/kodekloudrepos/demo
+
+# 2. Add the new remote pointing to /opt/xfusioncorp_demo.git
+git remote add dev_demo /opt/xfusioncorp_demo.git
+
+# 3. Verify the remote was added
+git remote
+
+# 4. Copy the index.html file into the repo
+cp /tmp/index.html .
+
+# 5. Check git status (optional, just to see untracked files)
+git status
+
+# 6. Add the new file to git
+git add .
+
+# 7. Commit the changes
+git commit -m "first commit"
+
+# 8. Check you are on master branch (optional)
+git branch
+
+# 9. Push the master branch to the new remote
+git push dev_demo master

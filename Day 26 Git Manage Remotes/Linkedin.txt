@@ -1,0 +1,17 @@
+🚀 Day 26 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge was all about managing multiple Git remotes.
+
+Here’s what I did:
+🔹 Added a new remote pointing to another repo: git remote add dev_blog /opt/xfusioncorp_blog.git
+🔹 Checked that the new remote was correctly added: git remote -v
+🔹 Copied a new file into the repo, added it, and committed the changes
+🔹 Pushed the master branch to the new remote: git push dev_blog master
+
+💡 Key Takeaways:
+✅ A Git remote lets you connect your local repo with multiple remote repositories for easier collaboration.
+✅ It’s super helpful for syncing code, backing up changes, and working in teams.
+
+Let’s keep coding and learning every day! 🐮
+
+#Git #DevOps #RemoteRepositories #DailyChallenge
