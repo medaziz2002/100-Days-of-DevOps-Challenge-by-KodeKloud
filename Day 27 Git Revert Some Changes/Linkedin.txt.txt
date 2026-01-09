@@ -1,0 +1,14 @@
+🚀 Day 27 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today's challenge was all about reverting changes in Git.
+
+Here’s how I did it:
+🔹 First, I checked the commit hash I wanted to revert using : git log
+🔹 Then, I reverted the commit and returned the repo to the previous state with : git revert <commit_hash>
+
+🗒️ Note:
+🔹 Git cheat sheets have been super helpful in keeping track of commands and workflows. If you’re learning Git, make sure you have one handy!
+
+Keep experimenting and learning! 💻✨
+
+hashtag#DevOps hashtag#Git hashtag#Learning hashtag#KodeKloud
