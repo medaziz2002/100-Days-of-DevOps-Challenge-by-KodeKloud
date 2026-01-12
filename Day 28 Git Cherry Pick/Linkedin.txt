@@ -1,22 +1,22 @@
-🚀 Day 28 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+🚀 Day 28 of #100DaysOfDevOps with KodeKloud 🚀
 
-Today's challenge was all about Git Cherry Pick
+Today’s challenge was all about Git Cherry-Pick 🌱
 
-Here’s how I did it: 
-
-🔹 Checked the commit hash from the feature branch using: git log
-🔹 Switched to the master branch and applied the commit:
+Here’s how I did it:
+🔹 Checked the commit hash from the feature branch using git log
+🔹 Switched to the master branch and applied the commit with:
 git cherry-pick <commit-hash>
 
 💡 Key Takeaways:
+🔹 git cherry-pick is a powerful command that allows you to apply a specific commit from one branch to another.
+🔹 Conflicts can occur if changes clash. Git will pause and let you resolve them. Once fixed, use:
+git cherry-pick --continue
+🔹 Useful advanced options:
+🔸 git cherry-pick --no-commit <commit-hash> → applies changes without creating a commit
+🔸 git cherry-pick --edit <commit-hash> → edit the commit message before committing
 
-🔹 git cherry-pick is a powerful command that lets you apply a specific commit from one branch to another.
-🔹 Conflicts may occur if the new changes clash with the current branch, Git will pause and alert you to resolve them. Once resolved, add your changes and continue using: git cherry-pick --continue
-🔹Some useful advanced options:
-🔸 git cherry-pick --no-commit <commit-hash> : applies the change without creating a new commit
-🔸 git cherry-pick --edit <commit-hash> : lets you edit the commit message before committing
+⚠️ Cherry-picking is very useful, but should be used carefully—especially on public branches—to avoid duplicate commits with different hashes.
 
-⚠️ While cherry-picking is handy, use it with caution , especially between public branches, as it can lead to duplicate commits with different hashes.
+🔥 Learn daily, build consistently!
 
-Keep learning, keep building! 
-🦬
+#DevOps #Git #LearningJourney

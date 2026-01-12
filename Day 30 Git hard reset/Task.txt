@@ -1,0 +1,41 @@
+The Nautilus application development team was working on a git repository /usr/src/kodekloudrepos/blog present on Storage server in Stratos DC. This was just a test repository and one of the developers just pushed a couple of changes for testing, but now they want to clean this repository along with the commit history/work tree, so they want to point back the HEAD and the branch itself to a commit with message add data.txt file. Find below more details:
+In /usr/src/kodekloudrepos/blog git repository, reset the git commit history so that there are only two commits in the commit history i.e initial commit and add data.txt file.
+Also make sure to push your changes.
+
+
+### Git Hard Reset Example
+#### 1️⃣ Check commit history
+
+```bash
+git log
+```
+* Before reset: multiple recent commits (Test Commit1 → Test Commit10)
+* HEAD points to `ec51510942c4d97ab801493d7a70addd9835e391` (Test Commit10)
+---
+#### 2️⃣ Reset local repository to an older commit
+```bash
+git reset --hard 9773ec0bbdde99409b5f83be99162793ed64e01a
+```
+* HEAD now points to commit: `add data.txt file`
+* All commits after this one are **deleted locally**
+* Index and working directory are reset to this commit's state
+Verify:
+```bash
+git log
+```
+* Now shows only:
+```
+commit 9773ec0bbdde99409b5f83be99162793ed64e01a  (HEAD -> master)
+commit 3b666d842437bfba1fd352c731d2efcb382fe0b4  (initial commit)
+```
+---
+#### 3️⃣ Push changes to the remote repository
+```bash
+git push --force origin master
+```
+* ⚠️ `--force` is necessary because local history is **behind** the remote
+* This rewrites the history on `origin/master` to match your local repository
+---
+✅ **Final result:**
+* Local and remote repositories now point to commit `add data.txt file`
+* All later commits (Test Commit1 → Test Commit10) are removed from the server

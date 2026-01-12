@@ -1,0 +1,36 @@
+🚀 Day 30 of #100DaysOfDevOps with #KodeKloud 🚀
+
+
+
+Today's challenge was all about Git Hard Reset.
+
+
+
+Here’s how I did it:
+
+🔹 Checked the commit history with git log to find the commit hash I wanted to reset to
+
+ 🔹 Reset using: git reset --hard <commit_hash>
+
+ 🔹 Pushed the change (to revert history): git push origin master --force
+
+
+
+💡 Key Takeaways:
+
+🔸 git reset <commit_hash> : Default is --mixed. Moves HEAD to the specified commit, unstages changes but keeps them in your working directory.
+
+ 🔸 git reset --soft <commit_hash> : Moves HEAD to the commit and keeps changes staged.
+
+ 🔸 git reset --hard <commit_hash> : Moves HEAD, unstages changes, and removes them from your working directory entirely.
+
+ 🔸 HEAD is a pointer: it tells Git where you currently are in your repository’s history.
+
+⚠️ When using --force with push, you’re rewriting history. It’s necessary here since your local and remote commit histories differ.
+
+🔸If anyone knows a safer or more practical alternative to avoid --force, I’d love to hear it!
+
+
+
+Have a great Monday! 🌟
+#DevOps #Git #GitReset

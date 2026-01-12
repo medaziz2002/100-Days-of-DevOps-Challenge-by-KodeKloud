@@ -1,0 +1,18 @@
+🚀 Day 29 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today's challenge was all about merging Git Pull Requests (PRs).
+
+Here’s how I did it:
+🔹 Created a new feature branch and opened a Pull Request
+🔹 Added a reviewer to the PR
+🔹 Switched roles to the reviewer, reviewed the code, and merged the PR
+🔹 The diagram below explains it all in more detail 👇
+
+💡 Key Takeaways:
+
+🔹 A Pull Request (PR) is used to propose changes from one branch to another — enabling collaboration and code review before merging.
+🔹 Using PRs is an everyday task, and practicing it helps much more than just reading about it.
+
+Keep learning and pushing your limits! 🚀
+
+#DevOps #Git #CodeReview
