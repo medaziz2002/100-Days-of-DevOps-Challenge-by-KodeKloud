@@ -1,0 +1,24 @@
+
+
+🚀 Day 31 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge focused on Git Stash, a super useful feature when you need to pause your work without committing.
+
+Here’s what I practiced 👇
+🔹 Listed all saved stashes using: git stash list
+🔹 Restored a specific stash with: git stash apply stash@{1}
+🔹 Retrieved my changes back into the working directory, ready to commit and push to the master branch.
+
+💡 Key Takeaways:
+🔸 git stash helps you temporarily save uncommitted changes.
+🔸 git stash list → View all existing stashes.
+🔸 git stash push -m "message" → Save changes with a description.
+🔸 git stash show → Preview the latest stash changes.
+🔸 git stash apply → Apply changes without removing the stash.
+🔸 git stash pop → Apply changes and delete the stash.
+🔸 git stash apply stash@{n} → Apply a specific stash.
+🔸 git stash clear → Remove all saved stashes.
+
+Small Git features, big productivity wins 💡
+
+#DevOpsJourney #Git #LearningByDoing #ContinuousLearning
