@@ -4,58 +4,129 @@ Look for the stashed changes under /usr/src/kodekloudrepos/news git repository, 
 
 
 
+# 📦 Restore a Specific Git Stash and Push Changes
 
+## 🎯 Objective
 
+A developer previously stashed some in-progress changes in a Git repository and now wants to restore a specific stash (`stash@{1}`), commit those changes, and push them to the remote repository.
 
+This guide explains how to:
 
+* List available stashes
+* Restore a specific stash
+* Commit the restored changes
+* Push them to the origin repository
 
+---
 
+## 📍 Environment
 
-[root@ststor01 news]# git log
-commit bde60d7347d936674d0695e1fb90843440d54343 (HEAD -> master, origin/master)
-Author: Admin <admin@kodekloud.com>
-Date:   Tue Jan 13 20:34:00 2026 +0000
+* **Repository Path:** `/usr/src/kodekloudrepos/news`
+* **Remote Repository:** `/opt/news.git`
+* **Branch:** `master`
 
-    initial commit
-[root@ststor01 news]# git stash list
+---
+
+## ✅ Step-by-Step Solution
+
+### 1. Check Commit History
+
+Verify the current state of the branch:
+
+```bash
+git log
+```
+
+---
+
+### 2. List Available Stashes
+
+Display all stashed changes:
+
+```bash
+git stash list
+```
+
+Example output:
+
+```
 stash@{0}: WIP on master: bde60d7 initial commit
 stash@{1}: WIP on master: bde60d7 initial commit
-[root@ststor01 news]# git stash apply stash@{1}
-On branch master
-Your branch is up to date with 'origin/master'.
+```
 
+---
+
+### 3. Apply the Required Stash
+
+Restore the changes from `stash@{1}`:
+
+```bash
+git stash apply stash@{1}
+```
+
+---
+
+### 4. Verify Repository Status
+
+Ensure the restored files are staged and ready to be committed:
+
+```bash
+git status
+```
+
+Expected output:
+
+```
 Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-        new file:   welcome.txt
+  new file:   welcome.txt
+```
 
-[root@ststor01 news]# git status
-On branch master
-Your branch is up to date with 'origin/master'.
+---
 
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-        new file:   welcome.txt
+### 5. Commit the Restored Changes
 
-[root@ststor01 news]# git commit -"^C
-[root@ststor01 news]# git status
-On branch master
-Your branch is up to date with 'origin/master'.
+Create a commit for the applied stash:
 
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-        new file:   welcome.txt
+```bash
+git commit -m "Restore stash@{1}"
+```
 
-[root@ststor01 news]# git commit -m" restore the stash{1}"
-[master 8badd7d]  restore the stash{1}
- 1 file changed, 1 insertion(+)
- create mode 100644 welcome.txt
-[root@ststor01 news]# git push origin master
-Enumerating objects: 4, done.
-Counting objects: 100% (4/4), done.
-Delta compression using up to 16 threads
-Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 310 bytes | 310.00 KiB/s, done.
-Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
-To /opt/news.git
-   bde60d7..8badd7d  master -> master
-[root@ststor01 news]# 
+---
+
+### 6. Push to Remote Repository
+
+Push the commit to the `master` branch:
+
+```bash
+git push origin master
+```
+
+---
+
+## 🎉 Result
+
+* The changes from `stash@{1}` have been successfully restored
+* A new commit has been created
+* The updated `master` branch is pushed to the remote repository
+
+---
+
+## 📝 Notes & Best Practices
+
+* `git stash apply` restores changes but keeps the stash in the stash list
+* To restore and remove the stash at the same time, use:
+
+```bash
+git stash pop stash@{1}
+```
+
+---
+
+✅ This workflow helps maintain a clean and traceable Git his
+
+
+
+
+
+
+
