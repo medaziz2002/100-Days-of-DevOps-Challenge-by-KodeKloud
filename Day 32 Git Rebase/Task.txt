@@ -1,0 +1,126 @@
+The Nautilus application development team has been working on a project repository /opt/apps.git. This repo is cloned at /usr/src/kodekloudrepos on storage server in Stratos DC. They recently shared the following requirements with DevOps team:
+
+
+
+One of the developers is working on feature branch and their work is still in progress, however there are some changes which have been pushed into the master branch, the developer now wants to rebase the feature branch with the master branch without loosing any data from the feature branch, also they don't want to add any merge commit by simply merging the master branch into the feature branch. Accomplish this task as per requirements mentioned.
+
+
+Also remember to push your changes once done
+
+
+
+# 🔄 Rebase a `feature` Branch with `master` (Without Merge Commit)
+
+## 🎯 Objective
+
+A developer is working on a `feature` branch while new changes have been pushed to the `master` branch. The goal is to:
+
+* Update the `feature` branch with the latest changes from `master`
+* **Preserve all commits from the `feature` branch**
+* **Avoid creating any merge commits**
+* Push the final result to the remote repository
+
+---
+
+## 📍 Environment
+
+* **Remote Repository:** `/opt/games.git`
+* **Local Repository:** `/usr/src/kodekloudrepos`
+* **Active Branch:** `feature`
+
+---
+
+## ✅ Step-by-Step Solution
+
+### 1. Check Available Branches
+
+Make sure you are on the `feature` branch:
+
+```bash
+git branch
+```
+
+Expected output:
+
+```
+* feature
+  master
+```
+
+---
+
+### 2. Rebase `feature` onto `master`
+
+This applies all commits from `feature` on top of the latest commits from `master`.
+
+```bash
+git rebase master
+```
+
+---
+
+### 3. Verify Repository Status
+
+```bash
+git status
+```
+
+Expected output:
+
+```
+On branch feature
+nothing to commit, working tree clean
+```
+
+---
+
+### 4. Push Changes to Remote
+
+```bash
+git push origin feature
+```
+
+If you receive a **non-fast-forward** error, it means the remote branch contains commits that your local branch does not yet have.
+
+---
+
+### 5. Rebase with Remote Branch
+
+To keep a clean, linear history and avoid merge commits, pull using rebase:
+
+```bash
+git pull --rebase origin feature
+```
+
+---
+
+### 6. Final Push
+
+After a successful rebase, push the branch again:
+
+```bash
+git push origin feature
+```
+
+---
+
+## 🎉 Result
+
+* The `feature` branch is now fully up to date with `master`
+* No merge commits were created
+* All feature branch commits are preserved
+* Changes are successfully pushed to the remote repository
+
+---
+
+## 📝 Best Practice (Optional)
+
+Set rebase as the default behavior when pulling changes:
+
+```bash
+git config --global pull.rebase true
+```
+
+---
+
+✅ This ensures a clean and professional Git history across your projects.

@@ -1,0 +1,19 @@
+🚀 Day 32 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today's challenge was all about Git Rebase
+
+Here’s how I did it: 
+🔹 Switched to the feature branch: git checkout feature
+🔹 Rebasing the feature branch on top of master: git rebase master
+🔹 Instead of using --force when pushing, I used git pull --rebase to fetch and reapply my local commits on top of the latest remote changes ,keeping the history clean and avoiding conflicts: git pull --rebase origin feature
+🔹 Finally, pushed the updated feature branch to the remote: git push origin feature
+
+💡 Key Takeaways:
+
+🔸 git rebase master replays your local commits on top of the master branch for a cleaner history.
+ 🔸 git pull --rebase fetches and rebases in one step — no merge commits, no messy history.
+ 🔸 Using git pull --rebase avoids the need for --force when pushing, reducing the risk of overwriting others’ work.
+ 🔸 Rebasing helps maintain a linear, easy-to-read Git history ; perfect for collaborative development!
+
+Have a Great Day Everyone! 
+🦬
