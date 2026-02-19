@@ -1,0 +1,18 @@
+🚀 Day 16 of #100DaysOfDevOps with #KodeKloud 🚀
+
+
+
+Today's challenge focused on configuring Nginx as a Load Balancer🔄⚖️
+
+Here's how I did it:
+🔹 Installed Nginx on the LBR (Load Balancer) server
+🔹 Set up proxy configuration in /etc/nginx/nginx.conf to forward traffic to backend servers on port 5003
+🔹 Verified Apache/httpd was running on all app servers using systemctl status httpd and ss -tlnp | grep httpd
+🔹 Tested the load balancer configuration and successfully accessed the application
+💡 Key Takeaways:
+✅ Load balancing distributes incoming traffic across multiple servers, preventing any single server from becoming a bottleneck
+✅ High availability isn't just about redundancy—it's about ensuring consistent performance under increasing load
+✅ Always verify backend services are running before testing the load balancer!
+🔐 Pro Tip: Checking service status with systemctl and port binding with ss or netstat should be your first debugging steps when troubleshooting connectivity issues.
+
+Another day, another DevOps skill unlocked! 🚀
