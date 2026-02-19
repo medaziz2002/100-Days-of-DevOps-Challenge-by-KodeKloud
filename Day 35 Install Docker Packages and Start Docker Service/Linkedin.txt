@@ -1,0 +1,22 @@
+🚀 Day 35 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today's Challenge: Installing Docker Packages and Starting Docker Service 
+
+Here’s How I Did It:
+ 🔹 Installed yum-utils
+ 🔹 Added the Docker repository: `sudo yum-config-manager --add-repo https://download[.]docker[.]com/linux/centos/docker-ce[.]repo
+
+🔹 Installed Docker components:
+sudo yum install docker-ce docker-ce-cli containerd.io
+🔹 Started and enabled the Docker service:
+sudo systemctl start docker 
+sudo systemctl enable docker
+
+💡 Key Takeaways:
+
+✅ yum-utils enhances the functionality of the yum package manager.
+✅ yum-config-manager helps manage repository configurations — enabling, disabling, or adding new ones.
+
+It might seem like a simple task, but every step counts!
+Have a great day, everyone! 
+🦬
