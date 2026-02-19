@@ -1,0 +1,10 @@
+🚀 Day 14 of #100DaysOfDevOps with #KodeKloud 🚀
+Today's Challenge was all about Linux Process Troubleshooting
+Here's how I did it:
+🔹 Logged in to the app01 server
+🔹 Tried to start the Apache service, got an error: "Address already in use"
+🔹 Checked which process was using the assigned port 8083 using: "ss -tunlp | grep 8083" and killed the conflicting process
+🔹 Restarted the httpd service, it worked just fine.
+💡 Key Takeaways:
+✅ Practice makes perfect. 😁
+Keep learning, keep growing! 🚀💪
