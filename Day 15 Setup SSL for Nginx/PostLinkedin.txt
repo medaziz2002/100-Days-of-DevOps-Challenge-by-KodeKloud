@@ -1,0 +1,17 @@
+🚀 Day 15 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge was all about setting up SSL with Nginx 🔐
+
+Here’s what I worked on:
+🔹 Installed Nginx
+🔹 Explored /etc/nginx/nginx.conf to understand TLS configuration
+🔹 Moved the provided certificate and key to the correct locations
+🔹 Updated the index.html in Nginx’s root directory
+🔹 Restarted Nginx to apply the changes
+
+💡 Key Takeaways:
+
+✅ SSL (Secure Sockets Layer) and TLS (Transport Layer Security) ensure secure communication between a web server and a client’s browser.
+✅ Simple to set up, yet critical — encryption protects data and verifies the server’s identity (and optionally the client’s).
+
+🔐 Securing applications is not optional, it’s essential. On to the next DevOps challenge! 🚀
