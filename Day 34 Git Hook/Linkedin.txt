@@ -1,18 +1,19 @@
-🚀 Day 34 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+🚀 Day 34 of #100DaysOfDevOps with #KodeKloud 🚀
 
 Today's challenge was all about Git Hooks
 
 🧠 Need to Know
 Git provides a way to trigger custom scripts when certain important actions occur.
- There are two types of hooks: client-side and server-side.
+
+There are two types of hooks: client-side and server-side.
 🔹 Client-side: triggered by operations such as committing and merging
 🔹 Server-side: triggered by network operations such as receiving pushed commits
+
 To install a hook, you just need to rename it by removing .sample from its name in the .git/hooks directory
 
-The task was to create a post-update hook to generate a release tag for each push.
-The post-update hook runs right after a push is completed on the remote repository.
+The task was to create a post-update hook to generate a release tag for each push. The post-update hook runs right after a push is completed on the remote repository.
 
-Here’s How I Did It:
+Here's How I Did It:
 🔹 Merged the feature and master branches in the repository
 🔹 Went to the remote repository (/opt/ecommerce.git), accessed the Git hooks, and updated the post-update hook by removing .sample from its name and changing its content to:
 
@@ -25,7 +26,7 @@ fi
 
 🔹 Went back to the local repository and pushed the changes
 🔹 Tested the release tag in the remote repository using git tag
-🔹 Verified the tag release-2025-11-12
+🔹 Verified the tag release-2025-02-05
 
 💡 Key Takeaways:
 
@@ -35,9 +36,10 @@ fi
 
 🔸pre-commit: runs first, before you even type a commit message.
 🔸post-commit: runs after a commit is made. often used for notifications or similar tasks.
-🔸 post-merge: runs after a successful merge. It can be used to restore data that Git doesn’t track, such as file permissions.
+🔸 post-merge: runs after a successful merge. It can be used to restore data that Git doesn't track, such as file permissions.
 
 …and many others that perform specific tasks at different stages of the Git workflow.
 
-Have a good Day, everyone! 
-🦬
+Have a good Day, everyone! 🦬
+
+#GitHooks #DevOps #AutomationScripting
