@@ -1,0 +1,21 @@
+🚀 Day 33 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today's challenge was all about Resolving Git Merge Conflicts
+
+Here’s how I did it:
+
+🔹 Tried to push changes to the repository
+🔹 Got error: "Updates were rejected because the remote contains work that you do not have locally"
+🔹 Did a git pull to get the updates from the remote
+🔹 Got message: "CONFLICT (add/add): Merge conflict in story-index.txt"
+🔹 Resolved the conflicts, then added, committed, and pushed the changes
+
+💡 Key Takeaways:
+
+✅ A merge conflict occurs when Git cannot automatically reconcile differences between branches during a merge.
+
+✅ Identify the files with conflicts by running git status. Conflicted files will be listed under Unmerged paths.
+
+Merge conflicts solved, productivity unlocked! ⚡💻
+
+#Git #MergeConflicts #DevOps #100DaysOfCode
