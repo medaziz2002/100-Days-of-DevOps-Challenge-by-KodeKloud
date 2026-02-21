@@ -1,0 +1,18 @@
+🚀 Day 36 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today’s challenge focused on deploying an Nginx container on the application server
+
+Here’s how I did it: 
+ 🔹 Ran the command: docker run -d --name nginx_1 nginx:latest
+
+💡 Key Takeaways:
+
+✅ -d, --detach: Run the container in the background
+✅ Some other useful options you can use with docker run:
+ • -p, --publish: Map a container port to a host port
+ • --cpus: Limit the number of CPUs the container can use
+ • -m, --memory: Set a memory limit for the container
+ • --rm: Automatically remove the container after it stops
+
+Have a great day, everyone!
+ 🦬

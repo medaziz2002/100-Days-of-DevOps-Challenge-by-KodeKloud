@@ -1,0 +1,47 @@
+Task: Deploy nginx container on Application Server 2
+
+Description:
+The Nautilus DevOps team is conducting application deployment tests.  
+You must deploy an Nginx container on Application Server 2 using the nginx:alpine image.  
+The container must be named nginx_2 and must be in a running state.
+
+Steps and Output:
+
+1. Create the container using the nginx alpine image:
+   $ docker create --name nginx_2 -p 80:80 nginx:alpine
+
+   Output:
+   Unable to find image 'nginx:alpine' locally
+   alpine: Pulling from library/nginx
+   589002ba0eae: Pull complete
+   bca5d04786e1: Pull complete
+   3e2c181db1b0: Pull complete
+   6b7b6c7061b7: Pull complete
+   399d0898a94e: Pull complete
+   955a8478f9ac: Pull complete
+   6d397a54a185: Pull complete
+   5e7756927bef: Pull complete
+   Digest: sha256:1d13701a5f9f3fb01aaa88cef2344d65b6b5bf6b7d9fa4cf0dca557a8d7702ba
+   Status: Downloaded newer image for nginx:alpine
+   dcca4747b1d7ef9d35cb0edb7f401fcf6580c1f3342d38930b1fd0995bc7f82e
+
+2. Verify the image:
+   $ docker images -a
+
+   REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
+   nginx        alpine    b76de378d572   2 weeks ago   62.1MB
+
+3. Verify the container status:
+   $ docker ps -a
+
+   CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS    PORTS     NAMES
+   dcca4747b1d7   nginx:alpine   "/docker-entrypoint.…"   35 seconds ago   Created             nginx_2
+
+4. Start the container:
+   $ docker start nginx_2
+
+   Output:
+   nginx_2
+
+Result:
+The nginx_2 container was successfully created using the nginx:alpine image and is now in a running state.
