@@ -1,0 +1,17 @@
+🚀 Day 39 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today's challenge focused on Creating a Docker Image From a Container!
+
+Here's how I tackled it:
+🔹 SSHed into Application Server 3 and verified the running container ubuntu_latest using docker ps
+🔹 Used the commit command: docker commit ubuntu_latest cluster:xfusion
+🔹 Verified the newly created image using docker images — and there it was: cluster:xfusion ready to go! ✅
+
+💡 Key Takeaways:
+✅ docker commit allows you to capture the current state of a running container and save it as a brand new Docker image — including all modifications made inside it.
+✅ The format repository:tag (e.g., cluster:xfusion) keeps your images organized and versioned.
+✅ The best part? The container keeps running during the commit — zero downtime! 🔥
+
+Have a great day, everyone! 🦬
+
+#Docker #LearningDevOps #Containers

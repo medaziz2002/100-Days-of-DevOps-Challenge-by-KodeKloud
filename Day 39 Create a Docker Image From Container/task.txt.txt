@@ -1,0 +1,53 @@
+
+
+# ✅ **Task: Create a Docker Image (`cluster:xfusion`) From a Running Container (`ubuntu_latest`)**
+
+A Nautilus developer made changes inside a running container and wants to preserve them. The DevOps team received a request to create a new image based on this modified container.
+
+Below is the clean, organized version of the steps and output.
+
+---
+
+## **🔹 Step 1: Check Running Containers**
+
+```bash
+[banner@stapp03 ~]$ docker ps
+CONTAINER ID   IMAGE     COMMAND       CREATED         STATUS         PORTS     NAMES
+8a5213a6d41e   ubuntu    "/bin/bash"   6 minutes ago   Up 6 minutes             ubuntu_latest
+```
+
+➡️ The running container is named **`ubuntu_latest`**.
+
+---
+
+## **🔹 Step 2: Commit the Container to a New Image**
+
+Command used:
+
+```bash
+[banner@stapp03 ~]$ docker commit ubuntu_latest cluster:xfusion
+sha256:e7f99059651f66a68c0dc6237a61dd83f6f0079dd0dc03d6c35a2155cbb5cc4f
+```
+
+➡️ This creates a new image named **`cluster:xfusion`**.
+
+---
+
+## **🔹 Step 3: Verify the New Image**
+
+```bash
+[banner@stapp03 ~]$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+cluster      xfusion   e7f99059651f   4 seconds ago   137MB
+ubuntu       latest    bbdabce66f1b   2 weeks ago     78.1MB
+```
+
+➡️ The image `cluster:xfusion` was successfully created from the container.
+
+---
+
+# ✅ **Final Result**
+
+A new Docker image **`cluster:xfusion`** has been successfully created from the running container **`ubuntu_latest`** on Application Server 3.
+
+---
