@@ -1,0 +1,61 @@
+
+# ✅ **Task: Copy an Encrypted File From the Docker Host to the `ubuntu_latest` Container**
+
+The Nautilus DevOps team stores confidential data on **App Server 1** in the Stratos Datacenter. A container named **`ubuntu_latest`** is running on the same server.
+
+The goal is to **copy an encrypted file**:
+
+* **Source on host:** `/tmp/nautilus.txt.gpg`
+* **Destination inside container:** `/tmp/`
+* The file must **not be modified** during the operation.
+
+The correct tool for this is `docker cp`, which copies files **exactly as they are**.
+
+---
+
+# 📌 **Steps and Commands Executed (Organized Version)**
+
+### 🔹 1. Check the running container
+
+```bash
+[tony@stapp01 ~]$ docker ps
+CONTAINER ID   IMAGE     COMMAND       CREATED         STATUS         PORTS     NAMES
+d422066717b5   ubuntu    "/bin/bash"   2 minutes ago   Up 2 minutes             ubuntu_latest
+```
+
+### 🔹 2. Confirm the encrypted file exists on the host
+
+```bash
+[tony@stapp01 tmp]$ ls
+nautilus.txt.gpg
+systemd-private-...
+```
+
+➡️ The file **`nautilus.txt.gpg`** is present in `/tmp`.
+
+---
+
+### 🔹 3. Copy the file to the container
+
+```bash
+[tony@stapp01 /]$ docker cp /tmp/nautilus.txt.gpg ubuntu_latest:/tmp/
+Successfully copied 2.05kB to ubuntu_latest:/tmp/
+```
+
+➡️ The encrypted file has been copied **without any modification** into the container's `/tmp` directory.
+
+---
+
+# 🎉 **Final Result**
+
+The encrypted file **`/tmp/nautilus.txt.gpg`** has been successfully copied to:
+
+```
+ubuntu_latest:/tmp/
+```
+
+The operation completed safely and correctly.
+
+---
+
+If you'd like, I can also create a **short summary**, a **Markdown report**, or a **step-by-step explanation for beginners**.

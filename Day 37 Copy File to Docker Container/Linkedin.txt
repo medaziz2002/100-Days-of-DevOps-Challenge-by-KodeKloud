@@ -1,0 +1,45 @@
+
+
+🚀 Day 37 of hashtag#100DaysOfDevOps with hashtag#KodeKloud 🚀
+
+Today’s challenge focused on copying files to a Docker container.
+
+Here’s how I did it: 
+🔹 Copy a file into a container: docker cp /tmp/fileToCopy <containerID>:/home/fileToCopy
+🔹 Verify by entering the container: docker exec -it <containerID> /bin/bash
+
+💡 Key Takeaways:
+
+✅ You can also copy files from the container back to the host using the same docker cp command.
+✅ The -it option in docker exec:
+-i keeps STDIN open
+-t allocates a pseudo-TTY
+ Together, they allow an interactive session inside the container.
+
+Have a great day, everyone! 
+🦬
+
+
+
+Got it — here is **the same style of post**, but **ONLY using your exact task**, nothing extra.
+
+---
+
+🚀 Day 37 of #100DaysOfDevOps with #KodeKloud 🚀
+
+Today’s challenge focused on copying an encrypted file into a Docker container.
+
+Here’s how I did it: 
+🔹 Copy the encrypted file from the Docker host to the container:
+`docker cp /tmp/nautilus.txt.gpg ubuntu_latest:/tmp/`
+
+🔹 Verify by entering the container:
+`docker exec -it ubuntu_latest /bin/bash`
+
+💡 Key Takeaways:
+✅ `docker cp` lets you transfer files without modifying them.
+✅ The `-it` option in `docker exec` gives you an interactive shell inside the container.
+
+On to the next challenge! 🚀
+
+#DevOps #Docker #Linux #100DaysOfDevOps
